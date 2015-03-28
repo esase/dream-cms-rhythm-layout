@@ -1,0 +1,10 @@
+@import "../../../base/comment/css/main.css";
+
+
+div#global-comments-wrapper ul#comments-list-wrapper .approved {
+  color: #777;
+}
+
+div#global-comments-wrapper ul#comments-list-wrapper .disapproved {
+  color: #c0c0c0;
+}

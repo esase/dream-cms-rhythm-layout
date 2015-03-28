@@ -1,0 +1,43 @@
+<?php
+    $this->declareVars('queries', 'defaultRoute');
+
+    if(!isset($this->params)) {
+        $this->params = [];
+    }
+
+    $this->queries = !empty($this->queries) && is_array($this->queries) ? $this->queries : [];
+    $this->defaultRoute = !empty($this->route) ? $this->route : 'application/page';
+?>
+
+<?php if ($this->pageCount > 1): ?>
+    <div class="pagination">
+        
+        <?php if (isset($this->previous)): ?>
+            <?php if (!$this->paginator_page_query): ?>
+                <a href="<?php echo $this->url($this->defaultRoute, ['page' => $this->previous] + $this->params, ['force_canonical' => true, 'query' => $this->queries]) ?>">&lt;</a>
+            <?php else: ?>
+                <a href="<?php echo $this->url($this->defaultRoute, $this->params, ['force_canonical' => true, 'query' => [$this->paginator_page_query => $this->previous] + $this->queries]) ?>">&lt;</a>
+            <?php endif ?>
+        <?php endif ?>
+
+        <?php foreach ($this->pagesInRange as $page): ?>
+            <?php if (!$this->paginator_page_query): ?>
+                <a <?php if ($page == $this->current): ?>class="active"<?php endif ?> href="<?php echo $this->url($this->defaultRoute, ['page' => $page] + $this->params, ['force_canonical' => true, 'query' => $this->queries]) ?>">
+                    <?php echo $page ?>
+                </a>
+            <?php else: ?>
+                <a <?php if ($page == $this->current): ?>class="active"<?php endif ?> href="<?php echo $this->url($this->defaultRoute, $this->params, ['force_canonical' => true, 'query' => [$this->paginator_page_query => $page] + $this->queries]) ?>">
+                    <?php echo $page ?>
+                </a>
+            <?php endif ?>
+        <?php endforeach ?>
+
+        <?php if (isset($this->next)): ?>
+            <?php if (!$this->paginator_page_query): ?>
+                <a href="<?php echo $this->url($this->defaultRoute, ['page' => $this->next] + $this->params, ['force_canonical' => true, 'query' => $this->queries]) ?>">&gt;</a>
+            <?php else: ?>
+                <a href="<?php echo $this->url($this->defaultRoute, ['page' => $this->next] + $this->params, ['force_canonical' => true, 'query' => [$this->paginator_page_query => $this->next] + $this->queries]) ?>">&gt;</a>
+            <?php endif ?>
+        <?php endif ?>
+    </div>
+<?php endif ?>
