@@ -28,7 +28,8 @@
         <?php if (!$this->localization()->isCurrentLanguageLtr()): ?>
             <?php $this->layoutHeadLink()
                 ->appendStylesheet($this->layoutAsset('bootstrap.rtl.css', 'css'))
-                ->appendStylesheet($this->layoutAsset('frontend.rtl.css', 'css'))?>
+                ->appendStylesheet($this->layoutAsset('frontend.rtl.css', 'css'))
+                ->appendStylesheet($this->layoutAsset('rhytm-style.rtl.css', 'css')) ?>
         <?php endif; ?>
 
         <?php echo $this->layoutHeadLink() ?>
