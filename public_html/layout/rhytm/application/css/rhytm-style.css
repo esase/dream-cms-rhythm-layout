@@ -97,7 +97,10 @@ Section Text:       15px/1.7 "Open Sans", arial, sans-serif;
 /* ==============================
    Common styles
    ============================== */
-  
+#page-container {
+    margin-top:20px;
+}
+ 
 .align-center{ text-align:center !important; }
 .align-left{ text-align:left !important;}
 .align-right{ text-align:right !important; }
@@ -3542,6 +3545,9 @@ a.logo:hover{
     color: #111;
      text-decoration: underline;
 }
+.footer-text{
+    margin-bottom: 20px;    
+}    
 .footer-copy{
     margin-bottom: 5px;
     text-transform: uppercase;

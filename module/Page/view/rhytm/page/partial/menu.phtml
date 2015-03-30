@@ -1,0 +1,18 @@
+<nav class="main-nav js-stick">
+    <div class="full-wrapper relative clearfix">
+        <!-- Logo ( * your text or image into link tag *) -->
+        <div class="nav-logo-wrap local-scroll">
+            <a href="<?php echo $this->url('page') ?>" class="logo">
+                <img src="<?php echo $this->layoutAsset('logo-dark.png', 'image') ?>"  width="118" height="27" alt="<?php echo $this->escapeHtmlAttr($this->translate('Home')) ?>" />
+            </a>
+        </div>
+        <div class="mobile-nav">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="inner-nav desktop-nav">
+            <ul class="clearlist">
+                <?php echo $this->menu_items ?>
+            </ul>
+        </div>
+    </div>
+</nav>

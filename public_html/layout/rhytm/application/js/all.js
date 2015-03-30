@@ -223,10 +223,10 @@
         
         $(".mobile-on .mn-has-sub").find(".fa:first").removeClass("fa-angle-right").addClass("fa-angle-down");
         
-        mnHasSub.click(function(){
+        mnHasSub.find("i.fa").click(function(){
         
             if ($(".main-nav").hasClass("mobile-on")) {
-                mnThisLi = $(this).parent("li:first");
+                mnThisLi = $(this).parent().parent("li:first");
                 if (mnThisLi.hasClass("js-opened")) {
                     mnThisLi.find(".mn-sub:first").slideUp(function(){
                         mnThisLi.removeClass("js-opened");
@@ -234,7 +234,7 @@
                     });
                 }
                 else {
-                    $(this).find(".fa:first").removeClass("fa-angle-down").addClass("fa-angle-up");
+                    $(this).parent().find(".fa:first").removeClass("fa-angle-down").addClass("fa-angle-up");
                     mnThisLi.addClass("js-opened");
                     mnThisLi.find(".mn-sub:first").slideDown();
                 }
