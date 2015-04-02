@@ -10,7 +10,7 @@
             <?php $this->randPrefix = $this->escapeHtmlAttr($this->applicationRandId()) ?>
             <dl class="accordion">
                 <dt>
-                    <a href=""><?php echo $this->translate($category) ?></a>
+                    <a href="" class="<?php if (($this->index == 1 && ! (array) $this->openCategories) || (in_array($category, (array) $this->openCategories))): ?>active<?php endif ?>"><?php echo $this->translate($category) ?></a>
                 </dt>
                 <dd>
                     <?php echo $content ?>

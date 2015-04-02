@@ -1,0 +1,30 @@
+@import "../../../base/application/css/common.css";
+@import "../../../base/application/css/administration.css";
+
+.nav-tabs {
+    margin-bottom:20px;
+}
+
+ol.breadcrumb {
+    margin-bottom: 20px;
+}
+
+.page-header {
+    margin-bottom: 20px;
+    margin-top: 0 !important;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+.page-header h1 {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+div.alert {
+    margin-bottom: 20px;
+}
+
+table#manage-widgets {
+    margin-top: 10px;
+}
