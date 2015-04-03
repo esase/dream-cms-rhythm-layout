@@ -1,0 +1,9 @@
+<?php if ($this->children): ?>
+    <li>
+        <a class="mn-has-sub<?php if ($this->active): ?> active<?php endif ?>" href="<?php echo $this->url('page', ['page_name' => $this->url], ['force_canonical' => true]) ?>">
+            <?php echo $this->title ?> <?php if (!$this->is_sub_item): ?> <i class="fa fa-angle-down"></i><?php else: ?><i class="fa fa-angle-right"></i><?php endif ?></a>
+<?php else: ?>
+        <li>
+            <a <?php if ($this->active): ?>class="active"<?php endif ?> href="<?php echo $this->url('page', ['page_name' => $this->url], ['force_canonical' => true]) ?>">
+                <?php echo $this->title ?></a>
+<?php endif ?>

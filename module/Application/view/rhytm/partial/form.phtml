@@ -1,0 +1,100 @@
+<?php use Application\Form\ApplicationCustomFormBuilder ?>
+<?php use Zend\Form\Element ?>
+
+<?php $this->declareVars('category', 'formCategories', 'openCategories') ?>
+<?php $this->declareVars('initCalendar', 'initWysiwyg', 'filePreview') ?>
+
+<?php $this->formCategories = new ArrayObject() ?>
+<?php $this->openCategories = new ArrayObject() ?>
+
+<?php
+    $this->form->prepare();
+
+    // process the form elements
+    foreach ($this->form as $element) {
+        // get an element category
+        $this->category = null != $element->getOption('category')
+            ? $element->getOption('category')
+            : false;
+
+        // render the element
+        $renderedElement = $this->formRow($element);
+
+        // get the element's description
+        if (null != ($elementDescription = $element->getOption('description'))) {
+            $renderedElement .= '<p class="help-block">' . $elementDescription . '</p>';
+        }
+
+        // get element's type
+        if (null !== ($elementType = $form->getElementType($element->getName()))) {
+            switch ($elementType) {
+                case ApplicationCustomFormBuilder::FIELD_IMAGE :
+                case ApplicationCustomFormBuilder::FIELD_FILE  :
+                    // generate an image preview area
+                    if (!empty($element->getOption('extra_options')['preview'])
+                                && !empty($element->getOption('extra_options')['file_url'])) {
+
+                        $this->filePreview = $elementType == ApplicationCustomFormBuilder::FIELD_IMAGE
+                            ? 'partial/_form-image-preview'
+                            : 'partial/_form-file-preview';
+
+                        $renderedElement .= $this->partial($this->filePreview, [
+                            'name' => $element->getName(),
+                            'file_url' => $element->getOption('extra_options')['file_url'],
+                            'delete_option' => !empty($element->getOption('extra_options')['delete_option']) ? true : false
+                        ]);
+                    }
+                    break;
+
+                case ApplicationCustomFormBuilder::FIELD_DATE :
+                case ApplicationCustomFormBuilder::FIELD_DATE_UNIXTIME :
+                    $this->initCalendar = true;
+                    break;
+
+                case ApplicationCustomFormBuilder::FIELD_HTML_AREA :
+                case ApplicationCustomFormBuilder::FIELD_NOTIFICATION_MESSAGE :
+                    $this->initWysiwyg = true;
+                    break;
+            }
+        }
+
+        // put the rendered element into categories array
+        isset($this->formCategories[$this->category])
+            ? $this->formCategories[$this->category] .= $renderedElement
+            : $this->formCategories[$this->category]  = $renderedElement;
+
+        // the element has a validation error and element's category should be opened
+        if ($element->getMessages() &&
+                    !in_array($this->category, (array) $this->openCategories)) {
+
+            $this->openCategories[] = $this->category;
+        }
+    }
+?>
+
+<?php
+    $formName = new Element\Hidden('form_name');
+    $formName->setValue($this->form->getAttribute('name'));
+
+    echo $this->form()->openTag($this->form->setAttribute('class', 'form'));
+        echo $this->formHidden($formName);
+        echo $this->partial('partial/accordion', [
+            'name' => 'form-accordion',
+            'items' => $this->formCategories,
+            'openCategories' => $this->openCategories
+        ]);
+    echo $this->form()->closeTag();
+?>
+
+<?php if ($this->initWysiwyg): ?>
+    <?php echo $this->partial('partial/_init-wysiwyg', [
+        'form_name' => $this->form->getAttribute('name'),
+        'mode' => !empty($this->wysiwygMode) ? $this->wysiwygMode : null,
+    ]);?>
+<?php endif; ?>
+
+<?php if ($this->initCalendar): ?>
+    <?php echo $this->partial('partial/_init-calendar', [
+        'form_name' => $this->form->getAttribute('name')
+    ]) ?>
+<?php endif; ?>
