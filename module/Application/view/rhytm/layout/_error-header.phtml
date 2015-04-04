@@ -15,8 +15,8 @@
 
         <!-- styles -->
         <?php $this->layoutHeadLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->layoutAsset('icon/favicon.ico', 'image')])
-            ->prependStylesheet($this->layoutAsset('rhytm-style.css', 'css'))
-            ->prependStylesheet($this->layoutAsset('rhytm-style-responsive.css', 'css'))
+            ->prependStylesheet($this->layoutAsset('rhytm-style.css', 'css'), 'screen', null, ['cache' => false])
+            ->prependStylesheet($this->layoutAsset('rhytm-style-responsive.css', 'css'), 'screen', null, ['cache' => false])
             ->prependStylesheet($this->layoutAsset('jquery-ui.css', 'css'))
             ->prependStylesheet($this->layoutAsset('bootstrap-theme.css', 'css'))
             ->prependStylesheet($this->layoutAsset('bootstrap.css', 'css'))
@@ -25,7 +25,7 @@
         <?php if (!$this->localization()->isCurrentLanguageLtr()): ?>
             <?php $this->layoutHeadLink()
                 ->appendStylesheet($this->layoutAsset('bootstrap.rtl.css', 'css'))
-                ->appendStylesheet($this->layoutAsset('rhytm-style.rtl.css', 'css'))
+                ->appendStylesheet($this->layoutAsset('rhytm-style.rtl.css', 'css'), 'screen', null, ['cache' => false])
             ?>
         <?php endif; ?>
 
