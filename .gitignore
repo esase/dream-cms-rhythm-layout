@@ -12,6 +12,11 @@
 !/module/Page/view
 /module/Page/view/*
 !/module/Page/view/rhytm
+!/module/News
+/module/News/*
+!/module/News/view
+/module/News/view/*
+!/module/News/view/rhytm
 !/public_html
 /public_html/*
 !/public_html/layout
