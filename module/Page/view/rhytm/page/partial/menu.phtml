@@ -54,7 +54,7 @@
 
                 <?php if (count($this->localization()->getAllLocalizations()) > 1): ?>
                       <?php foreach($this->localization()->getAllLocalizations() as $language): ?>
-                          <?php if (empty($this->layout()->page['pages_provider']) && false !== $this->pageUrl($this->layout()->page['slug'], [], $language['language'])): ?>
+                          <?php if (empty($this->layout()->page['dynamic_page']) && false !== $this->pageUrl($this->layout()->page['slug'], [], $language['language'])): ?>
                               <?php 
                                   $this->localizationPages[$language['language']]['url'] = $this->pageUrl($this->layout()->page['slug'], [], $language['language']); 
                                   $this->localizationPages[$language['language']]['exists'] = true; 
