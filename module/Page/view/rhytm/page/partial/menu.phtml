@@ -68,6 +68,14 @@
                       <?php endforeach ?>
                   <?php endif ?>
 
+                    <?php if($this->aclCheckPermission('pages_administration_edit_page')): ?>
+                        <li>
+                            <a href="javascript:void(0)" rel="nofollow" onclick="showPopup('<?php echo $this->escapeJs($this->url('application/page', ['controller' => 'pages-ajax', 'action' => 'ajax-get-embed-page-manager'], ['force_canonical' => true, 'query' => ['page_id' => $this->layout()->page['id']]])) ?>', 'popup-page-manager-window')">
+                                <img src="<?php echo $this->layoutAsset('icon/customize.png', 'image') ?>" width="24" height="24" title="<?php echo $this->escapeHtmlAttr($this->translate('Customize the page')) ?>" />
+                            </a>
+                        </li>
+                    <?php endif ?>
+
                   <?php if (count($this->localizationPages) > 1): ?>
                       <li>
                           <!-- language switcher -->
@@ -85,10 +93,11 @@
                                   </li>
                               <?php endforeach ?>
                           </ul>
-                          <!-- end laguage swither -->
+                          <!-- end language switcher -->
                       </li>
                 <?php endif ?>
- 
+
+
             </ul>
         </div>
     </div>
