@@ -1,6 +1,9 @@
-<?php echo $this->doctype(); ?>
+<?php $this->declareVars('localizationPages') ?>
+<?php $this->localizationPages = new ArrayObject ?>
+<?php echo $this->doctype() ?>
 <html dir="<?php echo $this->localization()->getCurrentLanguageDirection() ?>" lang="<?php echo $this->localization()->getCurrentLanguage() ?>">
     <head>
+        <?php echo $this->pageInjectWidget('head') ?>
         <meta charset="utf-8">
         <?php echo $this->headTitle($this->applicationSetting('application_site_name'))->setSeparator(' - ')->setAutoEscape(false)->setTranslatorEnabled(false) ?>
         <base href="<?php echo $this->serverUrl() . $this->basePath() . '/' ?>" />
@@ -9,15 +12,15 @@
             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
             ->appendName('viewport', 'width=device-width, initial-scale=1')
             ->appendName('generator', $this->applicationSetting('application_generator'))
-            ->appendName('description', $this->applicationSetting('application_meta_description'))
-            ->appendName('keywords', $this->applicationSetting('application_meta_keywords'));
         ?>
 
         <!-- styles -->
         <?php $this->layoutHeadLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->layoutAsset('icon/favicon.ico', 'image')])
-            ->prependStylesheet($this->layoutAsset('rhytm-style.css', 'css'), 'screen', null, ['cache' => false])
-            ->prependStylesheet($this->layoutAsset('rhytm-style-responsive.css', 'css'), 'screen', null, ['cache' => false])
+            ->prependStylesheet($this->layoutAsset('frontend.css', 'css')) 
+            ->prependStylesheet($this->layoutAsset('rhythm-style.css', 'css'), 'screen', null, ['cache' => false])
+            ->prependStylesheet($this->layoutAsset('rhythm-style-responsive.css', 'css'), 'screen', null, ['cache' => false])
             ->prependStylesheet($this->layoutAsset('jquery-ui.css', 'css'))
+            ->prependStylesheet($this->layoutAsset('vertical-rhythm.min.css', 'css'), 'screen', null, ['cache' => false])
             ->prependStylesheet($this->layoutAsset('bootstrap-theme.css', 'css'))
             ->prependStylesheet($this->layoutAsset('bootstrap.css', 'css'))
         ?>
@@ -25,8 +28,8 @@
         <?php if (!$this->localization()->isCurrentLanguageLtr()): ?>
             <?php $this->layoutHeadLink()
                 ->appendStylesheet($this->layoutAsset('bootstrap.rtl.css', 'css'))
-                ->appendStylesheet($this->layoutAsset('rhytm-style.rtl.css', 'css'), 'screen', null, ['cache' => false])
-            ?>
+                ->appendStylesheet($this->layoutAsset('frontend.rtl.css', 'css'))
+                ->appendStylesheet($this->layoutAsset('rhythm-style.rtl.css', 'css'), 'screen', null, ['cache' => false]) ?>
         <?php endif; ?>
 
         <?php echo $this->layoutHeadLink() ?>
@@ -35,8 +38,10 @@
         <?php echo $this->layoutHeadScript()
             ->prependFile($this->layoutAsset('jquery.fitvids.js'))
             ->prependFile($this->layoutAsset('jquery.sticky.js'))
-            ->prependFile($this->layoutAsset('jquery.cookie.js'))
+            ->prependFile($this->layoutAsset('jquery.waitforimages.js'))
+            ->prependFile($this->layoutAsset('functions.js'))
             ->prependFile($this->layoutAsset('require.js'))
+            ->prependFile($this->layoutAsset('jquery.cookie.js'))
             ->prependFile($this->layoutAsset('bootstrap.js'))
             ->prependFile($this->layoutAsset('jquery-ui.js'))            
             ->prependFile($this->layoutAsset('jquery.js'))
@@ -47,5 +52,5 @@
         <?php $this->inlineScript()->prependFile($this->layoutAsset('all.js')) ?>
     </head>
     <body>
-        <!-- container -->
-        <div class="container" id="container">
+        <?php echo $this->pageInjectWidget('body') ?>
+        <?php echo $this->pageMenu() ?>

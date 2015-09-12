@@ -1,0 +1,78 @@
+.align-left{ text-align:right !important;}
+.align-right{ text-align:left !important; }
+.left{float:right !important;}
+.right{float:left !important;}
+
+/* Logo (in navigation panel)*/
+
+.nav-logo-wrap{
+    float: right;
+}
+
+.inner-nav{
+    float: left;
+}
+
+.inner-nav ul{
+    float: left;
+}
+
+.inner-nav ul li{
+    float: right;
+}
+.mn-sub{
+    left:auto;
+    right: 0;
+}
+
+.inner-nav ul li .mn-sub li a{
+    text-align: right;
+}
+
+.mn-sub li ul{
+    right: 100%;
+    left: auto;
+}
+
+.inner-nav > ul > li:last-child .mn-sub,
+.inner-nav li .mn-sub.to-left{
+    right: auto;
+    left: 0;
+}
+
+.inner-nav li:last-child .mn-sub li ul,
+.inner-nav li .mn-sub li ul.to-left{
+    right: auto;
+    left: 100%;
+}
+
+.mn-has-multi{
+    text-align: right;
+}
+
+.mobile-on .desktop-nav{
+    left: auto;
+    right:0;
+}
+.mobile-on .desktop-nav ul li a{
+    text-align: right;
+}
+
+.mobile-on .mn-has-sub > .fa{
+    right:auto;
+    left: 10px;
+}
+
+
+.mobile-nav{
+    float: left;
+}
+
+.mobile-on .mn-has-multi{
+    text-align: right;    
+}
+
+.accordion > dt > a:after{
+    right: auto;
+    left: 10px;
+}
