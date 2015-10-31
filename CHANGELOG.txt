@@ -1,5 +1,10 @@
+Rhythm layout 1.0.3, Oct 31, 2015
+====================================
+
+- added the jquery.ui.touch-punch.js in all layouts (it helps to use the drag and drop in mobile);
+
 Rhythm layout 1.0.2, Sep 12, 2015
 ====================================
 
-- fix layout name
+- fix layout name;
 - added possibility edit page on the site front-end (earlier we could only edit pages in the admin page);
